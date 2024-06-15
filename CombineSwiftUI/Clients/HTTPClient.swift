@@ -68,16 +68,16 @@ class HTTPClient {
             }
             .decode(type: MovieResponse.self, decoder: JSONDecoder())
             .map { $0.movies }
-            .handleEvents(receiveSubscription: { _ in
-                print("receiveSubscription")
-            }, receiveOutput: { _ in
-                print("receiveOutput")
-            }, receiveCancel: {
-                print("receiveCancel")
-            }, receiveRequest: { _ in
-                print("receiveRequest")
-            })
-            .print("Debug")
+//            .handleEvents(receiveSubscription: { _ in
+//                print("receiveSubscription")
+//            }, receiveOutput: { _ in
+//                print("receiveOutput")
+//            }, receiveCancel: {
+//                print("receiveCancel")
+//            }, receiveRequest: { _ in
+//                print("receiveRequest")
+//            })
+//            .print("Debug")
 //            .breakpoint(receiveOutput: { movies in
 //                !movies.isEmpty
 //            })
