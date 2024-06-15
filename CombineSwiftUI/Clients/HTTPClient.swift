@@ -68,6 +68,19 @@ class HTTPClient {
             }
             .decode(type: MovieResponse.self, decoder: JSONDecoder())
             .map { $0.movies }
+            .handleEvents(receiveSubscription: { _ in
+                print("receiveSubscription")
+            }, receiveOutput: { _ in
+                print("receiveOutput")
+            }, receiveCancel: {
+                print("receiveCancel")
+            }, receiveRequest: { _ in
+                print("receiveRequest")
+            })
+            .print("Debug")
+//            .breakpoint(receiveOutput: { movies in
+//                !movies.isEmpty
+//            })
             .mapError { error in
                 if let decodingError = error as? DecodingError {
                     return NetworkError.decodingFailed(decodingError)
@@ -76,7 +89,6 @@ class HTTPClient {
             }
             .eraseToAnyPublisher()
     }
-
 }
 
 
